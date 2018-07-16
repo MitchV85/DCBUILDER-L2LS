@@ -1,0 +1,5 @@
+---
+
+- name: Set device hostname
+  eos_config:
+    src: hostname.j2

@@ -1,0 +1,13 @@
+---
+
+- name: Testing
+  hosts: eos
+  gather_facts: no
+  
+  tasks:
+    - name: Gather EOS Facts
+      eos_facts:
+ 
+    - name: Testing
+      eos_config:
+        src: testinglldp.j2

@@ -1,0 +1,5 @@
+---
+
+- name: Set description on Peer-Link physical interfaces
+  eos_config:
+    src: mlag_peerlinkints_desc.j2

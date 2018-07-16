@@ -1,0 +1,5 @@
+---
+
+- name: Set infrastructure interfaces to bridged mode
+  eos_config:
+    src: infra_ints_switchport.j2

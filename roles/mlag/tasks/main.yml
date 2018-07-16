@@ -1,0 +1,9 @@
+---
+# tasks file for mlag
+
+- include: mlag_vlan.yml
+- include: mlag_peerlinkints_desc.yml
+- include: mlag_peerlink.yml
+- include: mlag_svi.yml
+- include: mlag_domain.yml
+- include: mlag_infra.yml

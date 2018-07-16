@@ -1,0 +1,8 @@
+{% for int in hostvars[inventory_hostname].interfaces %}
+  {% if hostvars[inventory_hostname].interfaces[int].infra is defined %}
+    {% if ansible_net_interfaces[int].operstatus == 'disabled' %} 
+interface {{int}}
+    no shutdown
+    {% endif %}
+  {% endif %}
+{% endfor %}

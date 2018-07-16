@@ -1,0 +1,5 @@
+---
+
+- name: Set Spanning-Tree mode to Rapid PVST
+  eos_config:
+    src: stpmode.j2

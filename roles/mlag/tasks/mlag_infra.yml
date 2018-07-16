@@ -1,0 +1,5 @@
+---
+
+- name: Create MLAG Port-Channels between SPINE and LEAF Switches
+  eos_config:
+    src: mlag_infra.j2

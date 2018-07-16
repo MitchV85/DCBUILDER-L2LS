@@ -1,0 +1,12 @@
+deviceid: "103"
+interfaces:
+  Ethernet1:
+    desc: "A-SPINE1"
+    infra: "yes"
+  Ethernet2:
+    desc: "A-SPINE2"
+    infra: "yes"
+  Ethernet5:
+    desc: "A-LEAF2A"
+  Ethernet6:
+    desc: "A-LEAF2A"

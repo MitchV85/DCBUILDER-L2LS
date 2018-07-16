@@ -1,0 +1,5 @@
+---
+
+- name: Adding physical interfaces to MLAG Peer-Link Port-Channel (Po2000)
+  eos_config:
+    src: mlag_peerlink.j2

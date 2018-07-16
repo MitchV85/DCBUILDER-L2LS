@@ -1,0 +1,7 @@
+---
+# tasks file for common
+
+- include: hostname.yml
+- include: stpmode.yml
+- include: dns.yml
+- include: ntp.yml

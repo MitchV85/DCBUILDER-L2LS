@@ -1,0 +1,19 @@
+{% set int = 'Port-Channel2000' %}
+{% if not ansible_net_interfaces[int] is defined -%}
+  {% if ansible_net_model == 'vEOS' -%}
+interface Ethernet5
+    switchport
+    channel-group 2000 mode active
+    no shutdown
+interface Ethernet6
+    switchport
+    channel-group 2000 mode active
+    no shutdown
+interface Port-Channel2000
+    description MLAG PEER-LINK
+    switchport
+    switchport mode trunk
+    switchport trunk group MLAGPEER
+    no shutdown
+  {% endif %}
+{% endif %}

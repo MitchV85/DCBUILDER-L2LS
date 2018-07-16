@@ -1,0 +1,9 @@
+---
+
+- name: Creating MLAG Peering VLAN
+  eos_config:
+    src: mlag_vlan.j2
+
+- name: Disabling Spanning-Tree for MLAG Peering VLAN
+  eos_config:
+    src: mlag_vlan_nostp.j2

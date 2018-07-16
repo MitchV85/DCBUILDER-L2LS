@@ -1,0 +1,6 @@
+dns:
+  serverip: 10.50.50.254
+  domain: eossandbox.local
+
+ntp:
+  serverip: 10.50.50.254

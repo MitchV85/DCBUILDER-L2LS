@@ -1,0 +1,5 @@
+---
+
+- name: Create MLAG Peering SVI
+  eos_config:
+    src: mlag_svi.j2

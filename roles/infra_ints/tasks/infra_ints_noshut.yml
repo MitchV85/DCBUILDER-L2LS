@@ -1,0 +1,5 @@
+---
+
+- name: Ensure all infrastructure interfaces are admin up
+  eos_config:
+    src: infra_ints_noshut.j2

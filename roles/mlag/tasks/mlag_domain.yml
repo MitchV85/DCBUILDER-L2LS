@@ -1,0 +1,6 @@
+---
+
+- name: Configure MLAG Domain Settings
+  eos_config:
+    src: mlag_domain.j2
+

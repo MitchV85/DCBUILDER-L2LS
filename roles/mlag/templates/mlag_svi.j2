@@ -1,0 +1,9 @@
+{% if inventory_hostname | regex_search('((.*1$)|(.*[aA]$))') -%}
+interface Vlan4094
+    description MLAG Peering SVI
+    ip address 192.0.0.1/24
+{% else -%}
+interface Vlan4094
+    description MLAG Peering SVI
+    ip address 192.0.0.2/24
+{% endif %}

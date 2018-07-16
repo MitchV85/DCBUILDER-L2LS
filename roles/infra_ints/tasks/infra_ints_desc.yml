@@ -1,0 +1,5 @@
+---
+
+- name: Set description on infrastructure interfaces
+  eos_config:
+    src: infra_ints_desc.j2

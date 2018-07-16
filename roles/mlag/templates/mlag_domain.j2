@@ -1,0 +1,13 @@
+{% if inventory_hostname | regex_search('((.*1$)|(.*[aA]$))') -%}
+mlag configuration
+   domain-id 100
+   local-interface Vlan4094
+   peer-address 192.0.0.2
+   peer-link Port-Channel2000
+{% else -%}
+mlag configuration
+   domain-id 100
+   local-interface Vlan4094
+   peer-address 192.0.0.1
+   peer-link Port-Channel2000
+{% endif %}

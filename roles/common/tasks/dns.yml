@@ -1,0 +1,5 @@
+---
+
+- name: Set DNS Server(s) and Domain Name
+  eos_config:
+    src: dns.j2

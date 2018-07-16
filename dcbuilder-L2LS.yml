@@ -1,0 +1,30 @@
+---
+
+- name: Deploy, Modify, Validate L2LS Data Center(s)
+  hosts: eos
+  gather_facts: no
+ 
+  tasks:
+    - name: Gather EOS Facts
+      eos_facts:
+      tags: facts
+
+    - name: Set Hostname and System Settings
+      import_role:
+        name: common
+      tags: sysdefaults
+
+    - name: Configure Infrastructure Interface IP and Description
+      import_role:
+        name: infra_ints
+      tags: infra_ints
+
+- name: Configure MLAG Parameters on Applicable Devices
+  hosts: mlag
+  gather_facts: no
+  
+  tasks: 
+    - name: Configure MLAG
+      import_role:
+        name: mlag
+      tags: mlag

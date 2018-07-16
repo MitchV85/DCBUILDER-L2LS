@@ -1,0 +1,9 @@
+---
+# vars file for infra_ints
+
+A-LEAF1A:
+  interfaces:
+    - Ethernet1:
+       desc: "A-SPINE1"
+    - Ethernet2:
+       desc: "A-SPINE2"

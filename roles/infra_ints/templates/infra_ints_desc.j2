@@ -1,0 +1,6 @@
+{% for int in hostvars[inventory_hostname].interfaces %}
+  {% if hostvars[inventory_hostname].interfaces[int].infra is defined %}  
+interface {{int}}
+    description {{hostvars[inventory_hostname].interfaces[int].desc}}
+  {% endif %}
+{% endfor %}

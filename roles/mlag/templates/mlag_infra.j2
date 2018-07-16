@@ -1,0 +1,21 @@
+{% for int in hostvars[inventory_hostname].interfaces -%}
+  {% if hostvars[inventory_hostname].interfaces[int].infra is defined -%}
+    {% set lldpneigh = ansible_net_neighbors[int][0].host -%}
+      {% set id = lldpneigh | regex_replace('^.*([Ll][Ee][Aa][Ff]|[Bb][Ll])(\d{1,2}).*$', '\\2') | int -%}}
+        {% if lldpneigh | regex_search('(^.*[Bb][Ll].*$)') -%}
+          {% set blid = id + 1000 -%}
+interface {{int}}
+    channel-group {{blid}} mode active
+interface Port-Channel{{blid}}
+    switchport mode trunk
+    mlag {{blid}}
+        {% else %}
+
+interface {{int}}
+    channel-group {{id}} mode active
+interface Port-Channel{{id}}
+    switchport mode trunk
+    mlag {{id}}
+        {% endif %}
+  {% endif %}
+{% endfor %}

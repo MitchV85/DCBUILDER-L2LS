@@ -1,0 +1,12 @@
+{% if ansible_net_model == 'vEOS' -%}
+  {% set e5desc = hostvars[inventory_hostname].interfaces.Ethernet5.desc -%}
+  {% set e6desc = hostvars[inventory_hostname].interfaces.Ethernet6.desc -%}
+  {% if ansible_net_interfaces.Ethernet5.description != e5desc -%}
+  interface Ethernet5
+    description {{hostvars[inventory_hostname].interfaces.Ethernet5.desc}}
+  {% endif %}
+  {% if ansible_net_interfaces.Ethernet5.description != e6desc -%}
+  interface Ethernet6
+    description {{hostvars[inventory_hostname].interfaces.Ethernet6.desc}}
+  {% endif %}
+{% endif %}
