@@ -1,0 +1,10 @@
+---
+
+- name: Test eAPI for config tasks
+  hosts: eos
+  
+  tasks: 
+    - name: Push the test config using eAPI
+      eos_config:
+        src: testeapi.j2
+        provider: "{{ eapi }}"

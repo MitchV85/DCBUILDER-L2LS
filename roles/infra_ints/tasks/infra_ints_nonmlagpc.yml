@@ -1,0 +1,5 @@
+---
+
+- name: Create Spine-Facing Port-Channel on Non-MLAG Leafs
+  eos_config:
+    src: infra_ints_nonmlagpc.j2

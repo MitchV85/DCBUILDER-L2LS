@@ -1,0 +1,10 @@
+{% if not inventory_hostname in groups['mlag'] %}
+{% set id = inventory_hostname | regex_replace('^.*[Ll][Ee][Aa][Ff](\d{1,2}).*$', '\\1') -%}
+{% for int in hostvars[inventory_hostname].interfaces -%}
+interface {{int}}
+    channel-group {{id}} mode active
+interface Port-Channel{{id}}
+    description SPINEs
+    switchport mode trunk    
+{% endfor %}
+{% endif %}

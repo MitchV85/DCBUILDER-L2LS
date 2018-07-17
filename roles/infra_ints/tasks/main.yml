@@ -4,3 +4,4 @@
 - include: infra_ints_desc.yml
 - include: infra_ints_switchport.yml
 - include: infra_ints_noshut.yml
+- include: infra_ints_nonmlagpc.yml 

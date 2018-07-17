@@ -1,21 +1,41 @@
+# For every interface listed within a hosts hostvar file...
 {% for int in hostvars[inventory_hostname].interfaces -%}
-  {% if hostvars[inventory_hostname].interfaces[int].infra is defined -%}
-    {% set lldpneigh = ansible_net_neighbors[int][0].host -%}
-      {% set id = lldpneigh | regex_replace('^.*([Ll][Ee][Aa][Ff]|[Bb][Ll])(\d{1,2}).*$', '\\2') | int -%}}
-        {% if lldpneigh | regex_search('(^.*[Bb][Ll].*$)') -%}
-          {% set blid = id + 1000 -%}
+#If that interface is a spine/leaf interconnect (infra) interface...
+{% if hostvars[inventory_hostname].interfaces[int].infra is defined -%}
+#If this device is a Leaf device...
+{% if inventory_hostname | regex_search('(^.*[Ll][Ee][Aa][Ff].*$)') -%}
+#Set the 'id' variable to the pod id portion of the Leaf switch hostname...
+{% set id = inventory_hostname | regex_replace('^.*[Ll][Ee][Aa][Ff](\d{1,2}).*$', '\\1') -%}}
+interface {{int}}
+    channel-group {{id}} mode active
+interface Port-Channel{{id}}
+    description B2B MLAG with Spines
+    switchport mode trunk
+    mlag {{id}}
+{% else %}
+#Then set the value of the 'lldpneigh' variable based on the lldp neighbor identified in EOS_FACTS...
+{% set lldpneigh = ansible_net_neighbors[int][0].host -%}
+#Set the 'id' variable base on the 'pod' identifier portion of the LLDP neighbor's hostname...
+{% set id = lldpneigh | regex_replace('^.*([Ll][Ee][Aa][Ff]|[Bb][Ll])(\d{1,2}).*$', '\\2') | int -%}}
+#But, if the LLDP neighbor is a border leaf, then adjust the value of the 'id' variable...
+{% if lldpneigh | regex_search('(^.*[Bb][Ll].*$)') -%}
+#And set 'id' to whatever it's value is, plus 1,000...
+{% set blid = id + 1000 -%}
 interface {{int}}
     channel-group {{blid}} mode active
 interface Port-Channel{{blid}}
     switchport mode trunk
     mlag {{blid}}
         {% else %}
-
 interface {{int}}
     channel-group {{id}} mode active
 interface Port-Channel{{id}}
     switchport mode trunk
     mlag {{id}}
-        {% endif %}
+#end the 'if this device is a leaf' statement...
+    {% endif %}
+#end the 'if lldpneigh regex statement...
   {% endif %}
+#end the 'if interface is an infra interface' statement...
+{% endif %}
 {% endfor %}
