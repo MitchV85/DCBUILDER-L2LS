@@ -1,0 +1,5 @@
+---
+# tasks file for vlans
+
+- include: vlans.yml
+- include: vlans_stproots.yml

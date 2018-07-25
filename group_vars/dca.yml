@@ -1,0 +1,8 @@
+dca:
+  vlans:
+    vlan10:
+      id: 10
+      name: Ten
+    vlan30:
+      id: 30
+      name: Thirty

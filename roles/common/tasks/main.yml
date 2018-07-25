@@ -5,3 +5,4 @@
 - include: stpmode.yml
 - include: dns.yml
 - include: ntp.yml
+- include: homelabroutes.yml

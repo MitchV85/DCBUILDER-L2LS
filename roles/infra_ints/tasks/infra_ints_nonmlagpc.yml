@@ -1,5 +1,6 @@
 ---
 
-- name: Create Spine-Facing Port-Channel on Non-MLAG Leafs
+- name: Create Spine-Facing Port-Channel on Non-MLAG Leafs (MLAG devices skipped)
   eos_config:
     src: infra_ints_nonmlagpc.j2
+  when: not inventory_hostname in groups['mlag']

@@ -1,0 +1,6 @@
+{% if inventory_hostname in groups['dca'] -%}
+{% for vlan in dca.vlans -%}
+vlan {{dca.vlans[vlan].id}}
+    name {{dca.vlans[vlan].name}}
+{% endfor %}
+{% endif %}

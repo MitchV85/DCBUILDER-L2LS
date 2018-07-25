@@ -1,0 +1,17 @@
+---
+
+- name: Testing
+  hosts: all
+  gather_facts: no
+
+  tasks:
+    
+    - name: Ping stuff
+      eos_command:
+        commands:
+          - ping 10.50.50.1
+      register: pingoutput
+
+    - name: debug whatever
+      debug:
+        var: pingoutput

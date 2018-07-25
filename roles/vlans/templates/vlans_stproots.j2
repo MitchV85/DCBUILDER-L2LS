@@ -1,0 +1,5 @@
+{% if inventory_hostname | regex_search('(^.*[Ss][Pp][Ii][Nn][Ee]1)') -%}
+spanning-tree vlan 1-4094 priority 4096
+{% else %}
+spanning-tree vlan 1-4094 priority 8192
+{% endif %}

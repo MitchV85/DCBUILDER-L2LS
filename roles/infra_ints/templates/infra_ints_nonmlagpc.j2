@@ -1,5 +1,9 @@
 {% if not inventory_hostname in groups['mlag'] %}
+{% if inventory_hostname | regex_search('(^.*[Bb][Ll].*$)') -%}
+{% set id = inventory_hostname | regex_replace('^.*[Bb][Ll](\d{1,2}).*$', '\\1') -%}
+{% else -%}
 {% set id = inventory_hostname | regex_replace('^.*[Ll][Ee][Aa][Ff](\d{1,2}).*$', '\\1') -%}
+{% endif -%}
 {% for int in hostvars[inventory_hostname].interfaces -%}
 interface {{int}}
     channel-group {{id}} mode active

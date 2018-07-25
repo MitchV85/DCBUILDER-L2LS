@@ -5,21 +5,27 @@
   gather_facts: no
  
   tasks:
-    - name: Gather EOS Facts
-      eos_facts:
-      tags: facts
 
-    - name: Set Hostname and System Settings
+    - name: Set Hostname and System Settings (DNS, NTP, STP Mode, etc.)
       import_role:
         name: common
       tags: sysdefaults
 
-    - name: Configure Infrastructure Interface IP and Description
+    - name: Gather EOS Facts
+      eos_facts:
+      tags: facts
+
+    - name: Configure Infrastructure Interfaces (Leaf/Spine Interconnects)
       import_role:
         name: infra_ints
       tags: infra_ints
 
-- name: Configure MLAG Parameters on Applicable Devices
+    - name: Create VLANs in each Data Center
+      import_role:
+        name: vlans
+      tags: vlans
+
+- name: Configure MLAG (Non-MLAG Devices Skipped)
   hosts: mlag
   gather_facts: no
   

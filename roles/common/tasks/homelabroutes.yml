@@ -1,0 +1,5 @@
+---
+
+- name: Create static routes for HomeLab Access
+  eos_config:
+    src: homelabroutes.j2

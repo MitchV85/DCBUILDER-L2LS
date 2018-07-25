@@ -1,0 +1,5 @@
+---
+
+- name: Create VLANs
+  eos_config:
+    src: vlans_createvlans.j2

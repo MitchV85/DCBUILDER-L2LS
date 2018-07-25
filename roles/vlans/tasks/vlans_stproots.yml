@@ -1,0 +1,6 @@
+---
+
+- name: Set SPINE1 STP Root Primary, SPINE2 STP Root Secondary
+  eos_config:
+    src: vlans_stproots.j2
+  when: inventory_hostname in groups['spines']
